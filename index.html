@@ -75,6 +75,15 @@
         .dropdown:hover .dropdown-content {
             display: block;
         }
+        .program-item {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+        }
+        .program-item.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -86,20 +95,20 @@
                 <li><a href="#topics">Topics</a></li>
                 <li><a href="#tutorials">Tutorials</a></li>
                 <li class="dropdown">
-                    <a href="#programs">Programs </a>
-                    <div class="dropdown-content">
-                        <a href="prog1">Fibonacci Series</a>
-                        <a href="prog2">Prime Number Check</a>
-                        <a href="prog3">Factorial Calculation</a>
-                        <a href="prog4">Binary Search</a>
-                        <a href="prog5">Bubble Sort</a>
-                        <a href="prog6">Quick Sort</a>
-                        <a href="prog7">Merge Sort</a>
-                        <a href="prog8">Linked List Implementation</a>
-                        <a href="prog9">Stack Operations</a>
-                        <a href="prog10">Queue Operations</a>
-                        <a href="prog11">Graph Traversal (BFS & DFS)</a>
-                        <a href="prog12">Dynamic Programming Example</a>
+                    <a href="#programs">Programs</a>
+                    <div class="dropdown-content" id="programList">
+                        <a href="#prog1" class="program-item">Fibonacci Series</a>
+                        <a href="#prog2" class="program-item">Prime Number Check</a>
+                        <a href="#prog3" class="program-item">Factorial Calculation</a>
+                        <a href="#prog4" class="program-item">Binary Search</a>
+                        <a href="#prog5" class="program-item">Bubble Sort</a>
+                        <a href="#prog6" class="program-item">Quick Sort</a>
+                        <a href="#prog7" class="program-item">Merge Sort</a>
+                        <a href="#prog8" class="program-item">Linked List Implementation</a>
+                        <a href="#prog9" class="program-item">Stack Operations</a>
+                        <a href="#prog10" class="program-item">Queue Operations</a>
+                        <a href="#prog11" class="program-item">Graph Traversal (BFS & DFS)</a>
+                        <a href="#prog12" class="program-item">Dynamic Programming Example</a>
                     </div>
                 </li>
                 <li><a href="#contact">Contact</a></li>
@@ -107,50 +116,10 @@
         </nav>
     </header>
     
-    <section id="home" class="fade-in">
-        <h2>Welcome to Algorithms & Data Structures Learning</h2>
-        <p>Explore the world of algorithms and data structures with our interactive tutorials and examples.</p>
-    </section>
-    
-    <section id="topics" class="fade-in">
-        <h2>Topics Covered</h2>
-        <ul>
-            <li>Sorting Algorithms (Bubble Sort, Quick Sort, Merge Sort)</li>
-            <li>Searching Algorithms (Binary Search, Linear Search)</li>
-            <li>Data Structures (Arrays, Linked Lists, Trees, Graphs)</li>
-            <li>Dynamic Programming</li>
-            <li>Graph Algorithms</li>
-        </ul>
-    </section>
-    
-    <section id="tutorials" class="fade-in">
-        <h2>Interactive Tutorials</h2>
-        <p>Hands-on examples and code snippets to help you learn.</p>
-    </section>
-    
-    <section id="contact" class="fade-in">
-        <h2>Contact Us</h2>
-        <form>
-            <label for="name">Name:</label>
-            <input type="text" id="name" name="name" required>
-            
-            <label for="email">Email:</label>
-            <input type="email" id="email" name="email" required>
-            
-            <label for="message">Message:</label>
-            <textarea id="message" name="message" required></textarea>
-            
-            <button type="submit">Send</button>
-        </form>
-    </section>
-    
-    <footer>
-        <p>&copy; 2025 Algorithms & Data Structures Learning. All rights reserved.</p>
-    </footer>
-    
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             const sections = document.querySelectorAll("section");
+            const programItems = document.querySelectorAll(".program-item");
             
             function revealSections() {
                 sections.forEach(section => {
@@ -161,8 +130,18 @@
                 });
             }
             
+            function revealPrograms() {
+                programItems.forEach((item, index) => {
+                    setTimeout(() => {
+                        item.classList.add("show");
+                    }, index * 200); // Delay for smooth sequential visibility
+                });
+            }
+            
             revealSections();
             window.addEventListener("scroll", revealSections);
+            
+            document.querySelector(".dropdown").addEventListener("mouseover", revealPrograms);
         });
     </script>
 </body>
