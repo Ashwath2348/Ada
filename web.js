@@ -1,45 +1,56 @@
-const express = require('express');
-const bodyParser = require('body-parser');
-const { exec } = require('child_process');
-const fs = require('fs');
-const tmp = require('tmp');
+document.addEventListener('DOMContentLoaded', () => {
+    const themeToggle = document.getElementById('theme-toggle');
+    const body = document.body;
+    const dropdownLinks = document.querySelectorAll('.dropdown > a');
 
-const app = express();
-app.use(bodyParser.json());
-
-// Endpoint to compile and run C code
-app.post('/compile', (req, res) => {
-    const { code } = req.body;
-
-    if (!code) {
-        return res.status(400).json({ error: 'No code provided' });
-    }
-
-    // Create a temporary file for the C code
-    const tempFile = tmp.fileSync({ postfix: '.c' });
-    const outputFile = tmp.tmpNameSync({ postfix: '.out' });
-
-    fs.writeFileSync(tempFile.name, code);
-
-    // Compile and run the C code with a timeout
-    const compileCmd = `gcc "${tempFile.name}" -o "${outputFile}" && "${outputFile}"`;
-
-    exec(compileCmd, { timeout: 5000 }, (error, stdout, stderr) => {
-        tempFile.removeCallback(); // Cleanup C file
-        fs.unlink(outputFile, () => {}); // Remove compiled binary
-
-        if (error) {
-            return res.status(500).json({
-                error: stderr || error.message
-            });
-        }
-
-        res.json({ result: stdout });
+    // Toggle dark mode
+    themeToggle.addEventListener('click', () => {
+        body.classList.toggle('dark-mode');
+        const mode = body.classList.contains('dark-mode') ? 'Dark' : 'Light';
+        themeToggle.textContent = `Switch to ${mode === 'Dark' ? 'Light' : 'Dark'} Mode`;
     });
-});
 
-// Start the server
-const PORT = 3000;
-app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+    // Handle dropdown clicks on small screens
+    dropdownLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            const parent = link.parentElement;
+            if (window.innerWidth <= 768) {
+                e.preventDefault();
+                parent.classList.toggle('open');
+            }
+        });
+    });
+
+    // Compiler functionality
+    const compileBtn = document.getElementById('compile-btn');
+    const codeInput = document.getElementById('code');
+    const outputBox = document.getElementById('output');
+
+    if (compileBtn) {
+        compileBtn.addEventListener('click', async () => {
+            const code = codeInput.value.trim();
+            outputBox.textContent = 'Compiling...';
+
+            try {
+                const response = await fetch('/compile', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ code })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    outputBox.textContent = data.result || 'Compilation succeeded, but no output.';
+                } else {
+                    outputBox.textContent = data.error || 'Compilation failed with unknown error.';
+                }
+            } catch (err) {
+                outputBox.textContent = 'Error connecting to the compiler server.';
+                console.error(err);
+            }
+        });
+    }
 });
