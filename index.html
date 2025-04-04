@@ -3,146 +3,208 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Algorithms & Data Structures</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>ADA Learning Hub - C Compiler</title>
+    <link rel="stylesheet" href="style.css">
     <style>
+        /* (Your existing CSS remains unchanged) */
         body {
             font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f4f4f4, #ddd);
             margin: 0;
             padding: 0;
-            transition: background-color 0.5s ease-in-out;
-        }
-        header {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 1em;
-            transition: transform 0.5s ease-in-out;
-        }
-        nav ul {
-            list-style: none;
-            padding: 0;
             display: flex;
-            justify-content: center;
-            gap: 15px;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
         }
-        nav ul li {
-            display: inline;
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
         }
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-            transition: color 0.3s ease-in-out;
+        textarea {
+            width: 100%;
+            height: 200px;
+            font-family: monospace;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
         }
-        nav ul li a:hover {
-            color: #ffcc00;
-        }
-        section {
-            padding: 2em;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-        }
-        section.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        button {
+        .btn {
+            margin-top: 10px;
             padding: 10px 20px;
             border: none;
-            background-color: #333;
+            background: #007bff;
             color: white;
             cursor: pointer;
-            transition: background-color 0.3s ease-in-out;
+            border-radius: 5px;
         }
-        button:hover {
-            background-color: #ffcc00;
-            color: black;
+        .btn:hover {
+            background: #0056b3;
         }
-        .dropdown {
+        pre {
+            background: #222;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: left;
+            overflow-x: auto;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+            background: #333;
+            margin: 0;
+        }
+        .navbar li {
             position: relative;
-            display: inline-block;
         }
-        .dropdown-content {
+        .navbar li a {
+            display: block;
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .navbar li a:hover {
+            color: #ff9d00;
+        }
+        .dropdown-menu {
             display: none;
             position: absolute;
-            background-color: #f9f9f9;
-            min-width: 200px;
-            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-            padding: 10px;
-            z-index: 1;
+            background: #444;
+            list-style: none;
+            padding: 0;
+            min-width: 150px;
+            z-index: 1000;
         }
-        .dropdown:hover .dropdown-content {
+        .dropdown-menu li a {
+            color: white;
+            display: block;
+            padding: 10px;
+            transition: background 0.3s;
+        }
+        .dropdown-menu li a:hover {
+            background: #555;
+        }
+        .dropdown:hover .dropdown-menu {
             display: block;
         }
-        .program-item {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
+        main {
+            flex: 1;
+            margin-top: 20px;
+            margin-bottom: 20px;
         }
-        .program-item.show {
-            opacity: 1;
-            transform: translateY(0);
+        footer {
+            text-align: center;
+            padding: 10px;
+            background: #222;
+            color: white;
         }
     </style>
 </head>
 <body>
     <header>
-        <h1>Algorithms & Data Structures</h1>
+        <h1>ADA Learning Hub</h1>
         <nav>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#topics">Topics</a></li>
-                <li><a href="#tutorials">Tutorials</a></li>
+            <ul class="navbar">
                 <li class="dropdown">
-                    <a href="programs">Programs</a>
-                    <div class="dropdown-content" id="programList">
-                        <a href="prog1" class="program-item">Fibonacci Series</a>
-                        <a href="prog2" class="program-item">Prime Number Check</a>
-                        <a href="prog3" class="program-item">Factorial Calculation</a>
-                        <a href="prog4" class="program-item">Binary Search</a>
-                        <a href="prog5" class="program-item">Bubble Sort</a>
-                        <a href="prog6" class="program-item">Quick Sort</a>
-                        <a href="prog7" class="program-item">Merge Sort</a>
-                        <a href="prog8" class="program-item">Linked List Implementation</a>
-                        <a href="prog9" class="program-item">Stack Operations</a>
-                        <a href="prog10" class="program-item">Queue Operations</a>
-                        <a href="prog11" class="program-item">Graph Traversal (BFS & DFS)</a>
-                        <a href="prog12" class="program-item">Dynamic Programming Example</a>
-                    </div>
+                    <a href="#">Study Notes ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="module1.html">Module 1</a></li>
+                        <li><a href="module2.html">Module 2</a></li>
+                        <li><a href="module3.html">Module 3</a></li>
+                        <li><a href="module4.html">Module 4</a></li>
+                        <li><a href="module5.html">Module 5</a></li>
+                    </ul>
                 </li>
-                <li><a href="#contact">Contact</a></li>
+                <li class="dropdown">
+                    <a href="#">Programs & Outputs ▾</a>
+                    <ul class="dropdown-menu">
+                        <li><a href="program1.html">Program 1</a></li>
+                        <li><a href="program2.html">Program 2</a></li>
+                        <li><a href="program3.html">Program 3</a></li>
+                        <li><a href="program4.html">Program 4</a></li>
+                        <li><a href="program5.html">Program 5</a></li>
+                        <li><a href="program6.html">Program 6</a></li>
+                        <li><a href="program7.html">Program 7</a></li>
+                        <li><a href="program8.html">Program 8</a></li>
+                        <li><a href="program9.html">Program 9</a></li>
+                        <li><a href="program10.html">Program 10</a></li>
+                        <li><a href="program11.html">Program 11</a></li>
+                        <li><a href="program12.html">Program 12</a></li>
+                    </ul>
+                </li>
+                <li><a href="https://www.programiz.com/c-programming/online-compiler/">Online C Compiler</a></li>
+                <li><a href="subjectdetails.html">Subject Details</a></li>
             </ul>
         </nav>
     </header>
-    
+
+    <main>
+        <!-- About Section -->
+        <section class="about">
+            <div class="container">
+                <h2>About ADA Learning Hub</h2>
+                <p>Welcome to ADA Learning Hub, your ultimate resource for learning C programming. 
+                We provide structured study notes, coding examples, and an online compiler to help 
+                you master C programming with ease.</p>
+                <p>Our mission is to make learning interactive and accessible to everyone. Whether 
+                you're a beginner or an experienced programmer, you'll find valuable resources 
+                here to enhance your coding skills.</p>
+                <h3>Why Choose ADA Learning Hub?</h3>
+                <ul style="text-align: left; max-width: 700px; margin: auto;">
+                    <li><strong>Comprehensive Study Materials:</strong> Well-structured study notes covering C programming concepts in depth.</li>
+                    <li><strong>Practical Coding Examples:</strong> Real-world coding examples to reinforce learning.</li>
+                    <li><strong>Online C Compiler:</strong> Run and test your C programs instantly without needing additional software.</li>
+                    <li><strong>Easy Navigation:</strong> Organized content with modules, programs, and interactive elements.</li>
+                    <li><strong>Beginner-Friendly:</strong> Designed for students, beginners, and programming enthusiasts.</li>
+                    <li><strong>100% Free:</strong> Access all resources without any cost!</li>
+                </ul>
+                <h3>What You’ll Learn</h3>
+                <p>Our platform covers essential topics such as:</p>
+                <ul style="text-align: left; max-width: 700px; margin: auto;">
+                    <li>Basic Syntax and Structure of C</li>
+                    <li>Variables, Data Types, and Operators</li>
+                    <li>Control Statements (Loops & Conditionals)</li>
+                    <li>Functions and Pointers</li>
+                </ul>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2025 ADA LEARNING HUB</p>
+    </footer>
+
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const sections = document.querySelectorAll("section");
-            const programItems = document.querySelectorAll(".program-item");
-            
-            function revealSections() {
-                sections.forEach(section => {
-                    const rect = section.getBoundingClientRect();
-                    if (rect.top < window.innerHeight - 50) {
-                        section.classList.add("show");
-                    }
-                });
-            }
-            
-            function revealPrograms() {
-                programItems.forEach((item, index) => {
-                    setTimeout(() => {
-                        item.classList.add("show");
-                    }, index * 200); // Delay for smooth sequential visibility
-                });
-            }
-            
-            revealSections();
-            window.addEventListener("scroll", revealSections);
-            
-            document.querySelector(".dropdown").addEventListener("mouseover", revealPrograms);
-        });
+        function compileCode() {
+            const code = document.getElementById("code").value;
+            fetch("https://api.jdoodle.com/v1/execute", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    clientId: "YOUR_CLIENT_ID",
+                    clientSecret: "YOUR_CLIENT_SECRET",
+                    script: code,
+                    language: "c",
+                    versionIndex: "0"
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById("output").innerText = data.output;
+            })
+            .catch(error => {
+                document.getElementById("output").innerText = "Error: " + error;
+            });
+        }
     </script>
 </body>
 </html>
