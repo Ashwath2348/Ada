@@ -11,18 +11,18 @@ body {
 
 /* Header Styling */
 header {
-    background: #ffffff; /* Changed from blue to white */
-    color: #333;
+    background: #000000; /* Changed from blue to black */
+    color: white;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
-    border-bottom: 1px solid #ccc; /* Optional: separation line */
 }
 
 h1 {
     margin: 0;
+    color: white; /* Ensure the text is visible */
 }
 
 /* Navigation Styling */
@@ -39,21 +39,21 @@ nav ul li {
 }
 
 nav ul li a {
-    color: #333; /* Updated from white to match new header */
+    color: white; /* Keeping text white for contrast */
     text-decoration: none;
     font-size: 18px;
     transition: color 0.3s, transform 0.3s;
 }
 
 nav ul li a:hover {
-    color: #ff9d00;
+    color: #ffdd57;
     transform: scale(1.1);
 }
 
 /* Dark Mode Button */
 button#theme-toggle {
-    background: #ffffff;
-    border: 1px solid #ccc;
+    background: white;
+    border: none;
     padding: 10px 20px;
     border-radius: 5px;
     cursor: pointer;
@@ -62,7 +62,7 @@ button#theme-toggle {
 }
 
 button#theme-toggle:hover {
-    background: #eee;
+    background: #ddd;
     transform: scale(1.05);
 }
 
