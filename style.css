@@ -1,24 +1,38 @@
+/* General Styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-    transition: background-color 0.5s ease-in-out;
-}
-
-header {
-    background-color: #333;
-    color: white;
+    background-color: #f4f4f4;
+    color: #333;
     text-align: center;
-    padding: 1em;
-    transition: transform 0.5s ease-in-out;
+    transition: background 0.4s, color 0.4s;
 }
 
+/* Header Styling */
+header {
+    background: #007bff;
+    color: white;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+h1 {
+    margin: 0;
+}
+
+/* Navigation Styling */
 nav ul {
     list-style: none;
     padding: 0;
     display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 15px;
+    margin: 10px 0 0 0;
 }
 
 nav ul li {
@@ -28,35 +42,162 @@ nav ul li {
 nav ul li a {
     color: white;
     text-decoration: none;
-    transition: color 0.3s ease-in-out;
+    font-size: 18px;
+    transition: color 0.3s, transform 0.3s;
 }
 
 nav ul li a:hover {
-    color: #ffcc00;
+    color: #ffdd57;
+    transform: scale(1.1);
 }
 
-section {
-    padding: 2em;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease-in-out, transform 0.8s ease-in-out;
-}
-
-section.show {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-button {
-    padding: 10px 20px;
+/* Theme Toggle Button */
+button#theme-toggle {
+    background: white;
     border: none;
-    background-color: #333;
-    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease-in-out;
+    font-size: 16px;
+    transition: background 0.3s, transform 0.3s;
 }
 
-button:hover {
-    background-color: #ffcc00;
-    color: black;
+button#theme-toggle:hover {
+    background: #ddd;
+    transform: scale(1.05);
+}
+
+/* Main Section Styling */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+    max-width: 900px;
+}
+
+/* Card Styling */
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    width: 90%;
+    max-width: 800px;
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Footer Styling */
+footer {
+    background: #333;
+    color: white;
+    padding: 10px;
+    margin-top: 20px;
+}
+
+/* Copy Code Button */
+.copy-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s, transform 0.3s;
+}
+
+.copy-btn:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+}
+
+/* Preformatted Code Block */
+pre {
+    background: #222;
+    color: #fff;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: left;
+    overflow-x: auto;
+    position: relative;
+}
+
+/* Dark Mode Styling */
+.dark-mode {
+    background-color: #121212;
+    color: #ffffff;
+}
+
+.dark-mode header {
+    background: #1a1a1a;
+}
+
+.dark-mode nav ul li a {
+    color: #f0f0f0;
+}
+
+.dark-mode .card {
+    background: #1e1e1e;
+    color: white;
+}
+
+.dark-mode footer {
+    background: #1a1a1a;
+}
+
+.dark-mode button#theme-toggle {
+    background: #333;
+    color: white;
+}
+
+.dark-mode .copy-btn {
+    background-color: #4caf50;
+    color: #fff;
+}
+
+.dark-mode .copy-btn:hover {
+    background-color: #388e3c;
+}
+
+/* Animations */
+.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeIn 1s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    header {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .card {
+        width: 95%;
+    }
 }
