@@ -11,8 +11,8 @@ body {
 
 /* Header Styling */
 header {
-    background: #000000; /* Changed from blue to black */
-    color: white;
+    background: #000000 !important; /* Black background */
+    color: white !important;
     padding: 1rem;
     display: flex;
     justify-content: space-between;
@@ -20,28 +20,39 @@ header {
     flex-wrap: wrap;
 }
 
+/* Title Styling */
 h1 {
     margin: 0;
-    color: white; /* Ensure the text is visible */
+    font-size: 24px;
 }
 
 /* Navigation Styling */
+nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
 nav ul {
     list-style: none;
     padding: 0;
     display: flex;
     gap: 20px;
-    margin: 0;
+    background: #222; /* Darker background for navigation */
+    padding: 10px 20px;
+    border-radius: 5px;
 }
 
 nav ul li {
     display: inline;
+    position: relative;
 }
 
 nav ul li a {
-    color: white; /* Keeping text white for contrast */
+    color: white !important;
     text-decoration: none;
     font-size: 18px;
+    padding: 10px 15px;
     transition: color 0.3s, transform 0.3s;
 }
 
@@ -50,20 +61,31 @@ nav ul li a:hover {
     transform: scale(1.1);
 }
 
-/* Dark Mode Button */
-button#theme-toggle {
-    background: white;
-    border: none;
-    padding: 10px 20px;
+/* Dropdown Menu Styling */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background: #333;
+    list-style: none;
+    padding: 0;
+    min-width: 150px;
     border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background 0.3s, transform 0.3s;
+    z-index: 1000;
 }
 
-button#theme-toggle:hover {
-    background: #ddd;
-    transform: scale(1.05);
+.dropdown-menu li a {
+    color: white;
+    display: block;
+    padding: 10px;
+    transition: background 0.3s;
+}
+
+.dropdown-menu li a:hover {
+    background: #444;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
 }
 
 /* Main Section Styling */
@@ -94,7 +116,7 @@ main {
 
 /* Footer Styling */
 footer {
-    background: #333;
+    background: #000000;
     color: white;
     padding: 10px;
     margin-top: 20px;
@@ -110,10 +132,6 @@ footer {
     background: #1a1a1a;
 }
 
-.dark-mode nav ul li a {
-    color: #ffffff;
-}
-
 .dark-mode .card {
     background: #1e1e1e;
     color: white;
@@ -121,11 +139,6 @@ footer {
 
 .dark-mode footer {
     background: #1a1a1a;
-}
-
-.dark-mode button#theme-toggle {
-    background: #333;
-    color: white;
 }
 
 /* Animations */
