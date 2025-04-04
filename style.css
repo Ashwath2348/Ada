@@ -14,10 +14,6 @@ header {
     background: #007bff;
     color: white;
     padding: 1rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
 }
 
 h1 {
@@ -25,46 +21,63 @@ h1 {
 }
 
 /* Navigation Styling */
-nav ul {
+nav ul.navbar {
     list-style: none;
     padding: 0;
+    margin: 0;
     display: flex;
-    gap: 20px;
-    flex-wrap: wrap;
     justify-content: center;
-    margin: 10px 0 0 0;
+    background-color: #333;
+    flex-wrap: wrap;
+    z-index: 2;
+    position: relative;
 }
 
-nav ul li {
-    display: inline;
+.navbar li {
+    position: relative;
 }
 
-nav ul li a {
+.navbar li a {
+    display: block;
     color: white;
+    padding: 12px 16px;
     text-decoration: none;
     font-size: 18px;
-    transition: color 0.3s, transform 0.3s;
-}
-
-nav ul li a:hover {
-    color: #ffdd57;
-    transform: scale(1.1);
-}
-
-/* Theme Toggle Button */
-button#theme-toggle {
-    background: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 16px;
     transition: background 0.3s, transform 0.3s;
 }
 
-button#theme-toggle:hover {
-    background: #ddd;
+.navbar li a:hover {
+    background: #444;
     transform: scale(1.05);
+}
+
+/* Dropdown Menu Styling */
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background: #444;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    min-width: 160px;
+    z-index: 10;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.dropdown-menu li a {
+    color: white;
+    padding: 10px 16px;
+    display: block;
+    text-align: left;
+}
+
+.dropdown-menu li a:hover {
+    background-color: #555;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
 }
 
 /* Main Section Styling */
@@ -77,7 +90,7 @@ main {
 }
 
 /* Card Styling */
-.card {
+.card, .container {
     background: white;
     padding: 20px;
     border-radius: 10px;
@@ -88,46 +101,55 @@ main {
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.card:hover {
+.card:hover, .container:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Textarea for Compiler */
+textarea {
+    width: 100%;
+    height: 200px;
+    font-family: monospace;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Button Styling */
+.btn, button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    border: none;
+    color: white;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background 0.3s ease;
+}
+
+.btn:hover, button:hover {
+    background-color: #0056b3;
+}
+
+/* Output Box */
+pre {
+    background: #222;
+    color: #fff;
+    padding: 15px;
+    border-radius: 5px;
+    overflow-x: auto;
+    text-align: left;
 }
 
 /* Footer Styling */
 footer {
     background: #333;
     color: white;
-    padding: 10px;
-    margin-top: 20px;
-}
-
-/* Copy Code Button */
-.copy-btn {
-    background-color: #28a745;
-    color: white;
-    border: none;
-    padding: 6px 12px;
-    font-size: 14px;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 10px;
-    transition: background 0.3s, transform 0.3s;
-}
-
-.copy-btn:hover {
-    background-color: #218838;
-    transform: scale(1.05);
-}
-
-/* Preformatted Code Block */
-pre {
-    background: #222;
-    color: #fff;
-    padding: 12px;
-    border-radius: 8px;
-    text-align: left;
-    overflow-x: auto;
-    position: relative;
+    padding: 15px;
+    margin-top: auto;
 }
 
 /* Dark Mode Styling */
@@ -140,11 +162,7 @@ pre {
     background: #1a1a1a;
 }
 
-.dark-mode nav ul li a {
-    color: #f0f0f0;
-}
-
-.dark-mode .card {
+.dark-mode .card, .dark-mode .container {
     background: #1e1e1e;
     color: white;
 }
@@ -153,18 +171,9 @@ pre {
     background: #1a1a1a;
 }
 
-.dark-mode button#theme-toggle {
+.dark-mode button, .dark-mode .btn {
     background: #333;
     color: white;
-}
-
-.dark-mode .copy-btn {
-    background-color: #4caf50;
-    color: #fff;
-}
-
-.dark-mode .copy-btn:hover {
-    background-color: #388e3c;
 }
 
 /* Animations */
@@ -186,18 +195,27 @@ pre {
 }
 
 /* Responsive Design */
-@media (max-width: 600px) {
-    nav ul {
-        flex-direction: column;
-        gap: 10px;
-    }
-
-    header {
+@media screen and (max-width: 768px) {
+    nav ul.navbar {
         flex-direction: column;
         align-items: center;
     }
 
-    .card {
-        width: 95%;
+    .dropdown-menu {
+        position: static;
+        box-shadow: none;
+        border-radius: 0;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: none;
+    }
+
+    .dropdown.open .dropdown-menu {
+        display: block;
+    }
+
+    .navbar li a::after {
+        content: ' ▾';
     }
 }
